@@ -1,0 +1,25 @@
+CREATE DATABASE "laboleria";
+
+CREATE TABLE "cakes" (
+	"id" SERIAL NOT NULL PRIMARY KEY,
+	"name" TEXT NOT NULL,
+	"price" INTEGER NOT NULL,
+	"image" TEXT NOT NULL,
+	"description" TEXT
+);
+
+CREATE TABLE "clients" (
+	"id" SERIAL NOT NULL PRIMARY KEY,
+	"name" TEXT NOT NULL,
+	"address" TEXT NOT NULL,
+	"phone" TEXT NOT NULL
+);
+
+CREATE TABLE "orders" (
+	"id" SERIAL NOT NULL PRIMARY KEY,
+	"clientId" INTEGER NOT NULL REFERENCES clients(id),
+	"cakeId" INTEGER NOT NULL REFERENCES cakes(id),
+	"quantity" INTEGER NOT NULL,
+	"totalPrice" INTEGER NOT NULL,
+	"createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
